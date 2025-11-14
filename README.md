@@ -1,4 +1,4 @@
-# Examen Práctico: Sistema de Autenticación Híbrido
+# Examen Práctico: Sistema de Autenticación Híbrido - Hernández Menéndez Axel Jhostin
 
 > **Nota Importante para el Profesor:**
 > Para facilitar las pruebas y la evaluación directa de este proyecto, el archivo `.env` con las credenciales de conexión ha sido incluido en el repositorio. Entendemos que en un entorno profesional, este archivo **nunca** debe ser público y siempre debe ser ignorado (`.gitignore`). Esto se ha hecho únicamente con fines académicos y de evaluación.
@@ -7,8 +7,8 @@
 
 1.  Clonar este repositorio:
     ```bash
-    git clone <tu-url-de-github>
-    cd <nombre-del-repositorio>
+    git clone https://github.com/AxelJhostin/ExamenParcialPrimer.git
+    cd ExamenParcialPrimer
     ```
 
 2.  Crear y activar un entorno virtual:
