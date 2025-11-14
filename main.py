@@ -11,27 +11,35 @@ load_dotenv()
 class SistemaAutenticacion:
     
     def __init__(self):
+        """Configura las conexiones a ambas bases de datos al iniciar."""
         self.mysql_cnx = None
         self.mongo_client = None
         self.mongo_db = None
         self.usuario_actual = None 
 
         try:
+            # --- 1. Conectar a MySQL (con Puerto) ---
             self.mysql_config = {
                 'host': os.getenv('MYSQL_HOST'),
                 'user': os.getenv('MYSQL_USER'),
                 'password': os.getenv('MYSQL_PASSWORD'),
-                'database': os.getenv('MYSQL_DATABASE')
+                'database': os.getenv('MYSQL_DATABASE'),
+                # --- !! AJUSTE IMPORTANTE !! ---
+                'port': int(os.getenv('MYSQL_PORT')) # Añadimos el puerto y lo convertimos a entero
             }
-            self.mysql_cnx = mysql.connector.connect(**self.mysql_config)
-            print("✅ Conexión a MySQL (Clever Cloud) exitosa.")
             
+            # Probamos la conexión MySQL
+            self.mysql_cnx = mysql.connector.connect(**self.mysql_config)
+            print("✅ Conexión a MySQL (Railway.app) exitosa.")
+            
+            # --- 2. Conectar a MongoDB ---
             self.mongo_uri = os.getenv('MONGO_URI')
             if not self.mongo_uri:
                 raise ValueError("MONGO_URI no encontrada en .env")
                 
             self.mongo_client = MongoClient(self.mongo_uri)
             
+            # Usamos la base de datos que definimos antes
             self.mongo_db = self.mongo_client['examen_parcial_db'] 
             
             self.mongo_client.admin.command('ping')
